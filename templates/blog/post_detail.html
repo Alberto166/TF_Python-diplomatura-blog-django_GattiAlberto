@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ post.titulo }} - Blog Python{% endblock %}
+
+{% block content %}
+<div class="card shadow-sm mb-4">
+    {% if post.imagen %}
+        <img src="{{ post.imagen.url }}" class="card-img-top" alt="{{ post.titulo }}" style="max-height: 450px; object-fit: cover;">
+    {% endif %}
+    <div class="card-body">
+        <h1 class="card-title">{{ post.titulo }}</h1>
+        {% if post.subtitulo %}
+            <h5 class="text-muted mb-3">{{ post.subtitulo }}</h5>
+        {% endif %}
+        <p class="text-muted small border-bottom pb-2">
+            Publicado por <strong>{{ post.autor.username }}</strong> el {{ post.fecha_creacion|date:"d/m/Y H:i" }}
+        </p>
+        <div class="card-text mt-3" style="white-space: pre-line;">{{ post.contenido }}</div>
+    </div>
+    <div class="card-footer d-flex justify-content-between">
+        <a href="{% url 'post_list' %}" class="btn btn-secondary">Volver al listado</a>
+        {% if user.is_authenticated and user == post.autor %}
+            <div>
+                <a href="{% url 'post_update' post.pk %}" class="btn btn-warning">Editar</a>
+                <a href="{% url 'post_delete' post.pk %}" class="btn btn-danger">Eliminar</a>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
