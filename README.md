@@ -62,4 +62,4 @@ python manage.py runserver
 Luego abrí tu navegador e ingresá a `http://127.0.0`.
 
 ## Autor
-* **[Alberto Gatti]** - Proyecto Final del curso de Python.
+* **Alberto Fabian Gatti** - Proyecto Final del curso de Python.
